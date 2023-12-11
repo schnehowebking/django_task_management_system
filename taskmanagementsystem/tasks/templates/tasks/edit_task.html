@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Task{% endblock %}
+
+{% block content %}
+<div class= "container">
+    <div class="container-fluid">
+        <div class ="row">
+            <div class= "col">
+    <h2>Edit Task</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% load crispy_forms_tags %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+</div>
+</div>
+
+</div>
+</div>
+{% endblock %}

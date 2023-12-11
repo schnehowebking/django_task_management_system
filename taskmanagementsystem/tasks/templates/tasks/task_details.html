@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Task Details{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="container-fluid">
+    <h2>Task Details</h2>
+    <p>Title: {{ task.taskTitle }}</p>
+    <p>Description: {{ task.taskDescription }}</p>
+    <p>Assign Date: {{ task.taskAssignDate }}</p>
+    <form method="post" action="{% url 'save_completed_status' task.id %}">
+        {% csrf_token %}
+        <input type="checkbox" id="completed" name="is_completed" {% if task.is_completed %}checked{% endif %}>
+        <label for="completed">Completed</label>
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'show_tasks' %}">Back to Tasks</a>
+</div>
+</div>
+{% endblock %}

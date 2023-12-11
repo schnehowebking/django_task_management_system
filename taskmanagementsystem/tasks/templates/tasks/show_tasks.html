@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Show Tasks{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="container-fluid">
+        <h2>Show Tasks</h2>
+        <div class="row">
+            {% for task in tasks %}
+            <div class="col-md-4 mb-3">
+                <a href="{% url 'task_details' task.id %}">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>{{ task.taskTitle }}</h3>
+                            <p>{{ task.taskDescription }}</p>
+                            <p>Assigned: {{ task.taskAssignDate }}</p>
+                            <p>Is Completed: {% if task.is_completed %}Yes{% else %}No{% endif %}</p>
+                            {% if not task.is_completed %}
+                            <a href="{% url 'edit_task' task.id %}" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="{% url 'delete_task' task.id %}" class="btn btn-danger btn-sm">Delete</a>
+                            {% else %}
+                            <p class="text-success">Completed</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div> 
+    </div>
+</div>
+{% endblock %}
